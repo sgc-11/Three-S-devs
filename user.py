@@ -5,9 +5,9 @@ class Role(Enum):
     PROFESSOR = "Professor"
 
 class User:
-    def __init__(self, name, email, number):
+    def __init__(self, name: str, email: str, number: str, role: Role):
         self.name = name
         self.email = email
         self.number = number
+        self.role = role
 
-        self.role = Role.STUDENT if 7>2 else Role.PROFESSOR
