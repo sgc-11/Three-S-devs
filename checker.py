@@ -23,12 +23,15 @@ def classify_email(email: str) -> int:
     
     # reg_ex = re.compile("\S+@([a-z]+)\.utv\.edu\.co")
     reg_ex = re.compile(r"""
-        \S+  # capture the start of the email
+        ^  # This means that the regex must match the start of the string, that is, there is nothing before
+        [a-z]+  # capture the start of the email
         @  # capture the @
         (estudiante)?  # 'estudiante' may or not be there, if it is there save it into group
         \.?utv\.edu\.co  # check the rest of the email ending (the '\.' is to capture the '.', else it 
                         # would be a wildcard). (the '\.?' is because, since if the email is not 'estudiante',
                         # there won't be a '.', so the '.' may or may not be there)
+        $  # this means, that it must match the end of the string. That is, there is nothing after the email
+           # The '^' and '$' combined, means that the whole string must match the regex
                         """, (re.IGNORECASE | re.VERBOSE))  # we want to ignore case (re.IGNORECASE), and 
                             # to be able to comment the regex and make it in more than one line (re.VERBOSE)
 
