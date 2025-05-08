@@ -44,7 +44,46 @@ def classify_email(email: str) -> int:
         return 2
     
     return 1  # email valid, but not student, return professor
-    
+
+
+"""
+Checks if a name is valid
+    That means, the name just consists of letters, the case does not matter.
+
+Args:
+    name (str): the name
+
+Returns:
+    True: valid name
+    False: unvalid name
+"""
+def is_valid_name(name: str):
+    reg_exp = re.compile(r"^[a-z]+$", re.IGNORECASE)
+
+    result = reg_exp.match(name)
+
+    return result is not None
+
+
+"""
+Checks if a number is valid
+    It takes into account the international indicator '+' and the country code (any of those can or cannot be).
+    That means that "+57 ..." is valid, "57 ..." is valid, "+ ..." is valid, and "..." is 
+    also valid (the space is not needed)
+
+Args:
+    number (str): the number as a string
+
+Returns:
+    True: valid number
+    False: unvalid number
+"""
+def is_valid_number(number: str):
+    reg_exp = re.compile(r"^\+?\d{0,3}\d{10}$")
+
+    result = reg_exp.match(number.replace(" ", ""))
+
+    return result is not None
 
 # Testing purposes
 # if __name__ == "__main__":
@@ -56,3 +95,5 @@ def classify_email(email: str) -> int:
 
 #     print("\ntest 3: yeps@eia.edu.co")
 #     print(classify_email("yeps@eia.edu.co"))
+    # print(check_name("kadaksdkad"))
+    # print(check_number("57 312 270 5388"))
