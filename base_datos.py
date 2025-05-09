@@ -22,7 +22,7 @@ def register_user(name: str, email: str, number: str):
     _users.append(user)
 
 
-def get_all_users() -> list[str]:
+def get_all_users() -> list[User]:
     return _users.copy()
 
 

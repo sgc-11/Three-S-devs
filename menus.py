@@ -19,7 +19,7 @@ def menu_principal():
 
             table = Table("Comando", "Descripción")
             table.add_row("1", "Registrar nuevo usuario")
-            table.add_row("2", "Ver TODOS los correos registrados")
+            table.add_row("2", "Ver TODOS los usuarios registrados")
             table.add_row("3", "Buscar un usuario por su correo")
             table.add_row("4", "Salir de la aplicación")
 
@@ -107,7 +107,19 @@ def add_user_menu():
 
 
 def list_all_users():
-    pass
+    limpiar_terminal()
+
+    print("=" * 100)
+    print(pyfiglet.figlet_format("Listado de usuarios"))
+    print("=" * 100)
+
+    users_table = Table("Rol", "Nombre", "Correo", "Numero celular")
+    for user in base_datos.get_all_users():
+        users_table.add_row(user.role.value, user.name, user.email, user.number)
+
+    print(users_table)
+
+    typer.prompt("Escriba cualquier cosa para retornar al menu principal")
 
 
 def search_user_by_email():
