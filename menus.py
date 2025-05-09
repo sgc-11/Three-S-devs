@@ -123,4 +123,23 @@ def list_all_users():
 
 
 def search_user_by_email():
-    pass
+    limpiar_terminal()
+
+    print("=" * 100)
+    print(pyfiglet.figlet_format("Buscar usuario(s) por correo"))
+    print("=" * 100)
+
+    input_email: str = typer.prompt("Ingrese el correo a buscar\nTenga en cuenta, que puede omitir (o no) la parte del dominio " \
+    "del correo (derecha del @) y el @.\nEsto ya que siempre se va a poner el correo como terminado en '@utv.edu.co'")
+
+    input_email = input_email.split("@")[0] + "@utv.edu.co"
+
+
+    users_table = Table("Rol", "Nombre", "Correo", "Numero celular")
+    for user in base_datos.search_user_by_email(input_email):
+        users_table.add_row(user.role.value, user.name, user.email, user.number)
+
+    print("\n\nLos usuarios cuyos correos coinciden con lo buscado son")
+    print(users_table)
+
+    typer.prompt("Escriba cualquier cosa para retornar al menu principal")
