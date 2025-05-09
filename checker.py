@@ -128,7 +128,7 @@ def is_partial_email(input_email: str, actual_email: str) -> bool:
         ^
         (?P<local_part>[a-z0-9!#$%&'*+/=?^_`{|}~\.]+)
         @
-        (?:estudiante.)?
+        (?:estudiante.)?  # Ignore the role part of the email
         (?P<domain_part>[a-z0-9-\.]+)
         $
         """, re.VERBOSE | re.IGNORECASE)

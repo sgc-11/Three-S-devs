@@ -132,7 +132,7 @@ def search_user_by_email():
     input_email: str = typer.prompt("Ingrese el correo a buscar\nTenga en cuenta, que puede omitir (o no) la parte del dominio " \
     "del correo (derecha del @) y el @.\nEsto ya que siempre se va a poner el correo como terminado en '@utv.edu.co'")
 
-    input_email = input_email.split("@")[0] + "@utv.edu.co"
+    input_email = input_email.split("@")[0] + "@utv.edu.co"  # Get only the local part and append it the correct domain.
 
 
     users_table = Table("Rol", "Nombre", "Correo", "Numero celular")
