@@ -85,6 +85,34 @@ def is_valid_number(number: str):
 
     return result is not None
 
+
+"""
+Checks if the user input in the menu is a valid option. It asumes the options in
+    the menu are in a number range, that means, the options will be [1, 2, 3, 4], 
+    not [1, 32, 86, 102]. And in case the input is a valid option, in will return
+    the selected option.
+
+Arguments:
+    user_input(str): is the value the user typed
+    starting_range(int): is the start of the range, inclusive
+    ending_range(int): is the end of the range, inclusive
+
+Returns:
+    bool: if the option is false
+    int: the selected option
+"""
+def check_valid_option(user_input: str, starting_range: int, ending_range: int) -> int | bool:
+    user_input = user_input.strip()
+    if not user_input.isdecimal():
+        return False
+    
+    user_input = int(user_input)
+    if user_input > ending_range or user_input < starting_range:
+        return False
+    
+    return user_input
+
+
 # Testing purposes
 # if __name__ == "__main__":
 #     print("test 1: yeps@estudiante.utv.edu.co")
