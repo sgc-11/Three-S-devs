@@ -33,10 +33,27 @@ def menu_principal():
                     if typer.confirm("¿Está seguro de que desea salir?"):
                         cowsay.ghostbusters("¡Que tengas un maravilloso día!")
                         raise typer.Exit(code = 1) # Exit cleanly
+                
+                case 3:
+                    search_user_by_email()
+
+                case 2: 
+                    list_all_users()
+
+                case 1:
+                    add_user_menu()
        
     except typer.Exit as e:
         print(f"[bold green]Successfull exit[/bold green]")
 
 
-def create_add_menu():
+def add_user_menu():
+    pass
+
+
+def list_all_users():
+    pass
+
+
+def search_user_by_email():
     pass
