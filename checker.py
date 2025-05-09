@@ -24,7 +24,7 @@ def classify_email(email: str) -> int:
     # reg_ex = re.compile("\S+@([a-z]+)\.utv\.edu\.co")
     reg_ex = re.compile(r"""
         ^  # This means that the regex must match the start of the string, that is, there is nothing before
-        [a-z]+  # capture the start of the email
+        [a-zA-Z0-9!#$%&'*+/=?^_`{|}~]+  # capture the start of the email
         @  # capture the @
         (estudiante)?  # 'estudiante' may or not be there, if it is there save it into group
         \.?utv\.edu\.co  # check the rest of the email ending (the '\.' is to capture the '.', else it 
