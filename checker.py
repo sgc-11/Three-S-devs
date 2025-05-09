@@ -126,9 +126,11 @@ Returns:
 def is_partial_email(input_email: str, actual_email: str) -> bool:
     reg_exp = re.compile(r"""
         ^
-        (?P<local_part>[a-z0-9!#$%&'*+/=?^_`{|}~]+)
+        (?P<local_part>[a-z0-9!#$%&'*+/=?^_`{|}~\.]+)
         @
+        (?:estudiante.)?
         (?P<domain_part>[a-z0-9-\.]+)
+        $
         """, re.VERBOSE | re.IGNORECASE)
     
     input_match = reg_exp.match(input_email)
@@ -146,7 +148,7 @@ def is_partial_email(input_email: str, actual_email: str) -> bool:
 
 
 # Testing purposes
-# if __name__ == "__main__":
+if __name__ == "__main__":
 #     print("test 1: yeps@estudiante.utv.edu.co")
     # print(classify_email("simon.gomez56@estudiante.utv.edu.co"))
 
@@ -157,4 +159,4 @@ def is_partial_email(input_email: str, actual_email: str) -> bool:
 #     print(classify_email("yeps@eia.edu.co"))
     # print(check_name("kadaksdkad"))
     # print(check_number("57 312 270 5388"))
-    # print(is_partial_email("a@gmail.com", "b@gmail.com"))
+    # print(is_partial_email("s@utv.edu.co", "simon.gomez@estudiante.utv.edu.co"))
