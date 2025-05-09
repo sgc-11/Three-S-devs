@@ -2,7 +2,12 @@ import checker
 import typer
 from user import User, Role
 
-_users: list[User] = list()
+# Start the database with mock data
+_users: list[User] = [
+    User("Simon Gomez", "simon.gomez@utv.edu.co", "+57 123 456 7890", Role.STUDENT),
+    User("Santiago Yepes", "santiago.yepes@utv.edu.co", "+57 098 765 4321", Role.STUDENT),
+    User("Sofia Aristizabal", "sofia.aristizabal@utv.edu.co", "+57 567 438 9210", Role.PROFESSOR)
+]
 
 def register_user(name: str, email: str, number: str):
     if not checker.is_valid_name(name):  raise ValueError("Invalid name")
