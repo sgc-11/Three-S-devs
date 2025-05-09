@@ -2,7 +2,7 @@ import checker
 import typer
 from user import User, Role
 
-_users = list()
+_users: list[User] = list()
 
 def register_user(name: str, email: str, number: str):
     if not checker.is_valid_name(name):  raise ValueError("Invalid name")
@@ -20,3 +20,10 @@ def register_user(name: str, email: str, number: str):
 def get_all_emails() -> list[str]:
     return [user.email for user in _users]
 
+
+def get_all_students() -> list[User]:
+    return [user for user in _users if user.role == Role.STUDENT]
+
+
+def get_all_professors() -> list[User]:
+    return [user for user in _users if user.role == Role.PROFESSOR]
