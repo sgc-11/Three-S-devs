@@ -68,6 +68,7 @@ def add_user_menu():
     print ("[bold red]Si en algun momento quieres devolverte al menu principal, escribe 4[/bold red]")
     print("-" * 100)
     
+    # Everything here has double verifications, for extra security (good to have the habit)
     name = typer.prompt("Ingrese el nombre")
     while not checker.is_valid_name(name):
         if name == "4":  return
