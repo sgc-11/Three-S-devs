@@ -148,7 +148,7 @@ def is_partial_email(input_email: str, actual_email: str) -> bool:
 
 
 # Testing purposes
-if __name__ == "__main__":
+# if __name__ == "__main__":
 #     print("test 1: yeps@estudiante.utv.edu.co")
     # print(classify_email("simon.gomez56@estudiante.utv.edu.co"))
 
