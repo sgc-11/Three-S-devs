@@ -27,3 +27,12 @@ def get_all_students() -> list[User]:
 
 def get_all_professors() -> list[User]:
     return [user for user in _users if user.role == Role.PROFESSOR]
+
+
+def search_user_by_email(email: str) -> User:
+    # for user in _users:
+    #     if user.email == email:
+    #         return user
+        
+    # return None
+    pass

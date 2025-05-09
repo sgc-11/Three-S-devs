@@ -4,6 +4,7 @@ from rich.table import Table
 import typer
 import cowsay
 import checker
+from cleanTerminal import limpiar_terminal
 
 ## Principal
 def menu_principal():
@@ -49,7 +50,13 @@ def menu_principal():
 
 
 def add_user_menu():
-    pass
+    limpiar_terminal()
+    
+    name = typer.prompt("Ingrese el nombre: ")
+    if not checker.is_valid_name(name):
+
+    email = typer.prompt("Ingrese el correo: ")
+    number = typer.prompt("Ingrese el numero de celular: ")
 
 
 def list_all_users():

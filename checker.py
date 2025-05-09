@@ -113,6 +113,21 @@ def check_valid_option(user_input: str, starting_range: int, ending_range: int) 
     return user_input
 
 
+"""
+Checks if an input email is a substring of the actual email, but just by the local part (before the @)
+
+Args:
+    input_email(str): the presumed substring we want to check
+    actual_email(str): the email we want to check it to
+
+Returns:
+    True if the input is a substring, else false.
+"""
+def is_partial_email(input_email: str, actual_email: str) -> bool:
+    pass
+
+
+
 # Testing purposes
 # if __name__ == "__main__":
 #     print("test 1: yeps@estudiante.utv.edu.co")
