@@ -89,7 +89,7 @@ def is_valid_number(number: str):
 """
 Checks if the user input in the menu is a valid option. It asumes the options in
     the menu are in a number range, that means, the options will be [1, 2, 3, 4], 
-    not [1, 32, 86, 102]. And in case the input is a valid option, in will return
+    not [10, 32, 86, 102]. And in case the input is a valid option, in will return
     the selected option.
 
 Arguments:
