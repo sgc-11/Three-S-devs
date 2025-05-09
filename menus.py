@@ -5,11 +5,12 @@ import typer
 import cowsay
 import checker
 
+## Principal
 def menu_principal():
 
-    print("=" * 50)
+    print("=" * 100)
     print(pyfiglet.figlet_format("MENU PRINCIPAL"))
-    print("=" * 50)
+    print("=" * 100)
 
     table = Table("Comando", "Descripción")
     table.add_row("1", "Registrar nuevo usuario")
@@ -18,7 +19,7 @@ def menu_principal():
     table.add_row("4", "Salir de la aplicación")
 
     print(table)
-    print("=" * 50)
+    print("=" * 100)
 
     try:
         while True:
