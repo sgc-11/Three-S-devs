@@ -1,8 +1,8 @@
 from enum import Enum
 
 class Role(Enum):
-    STUDENT = "Student"
-    PROFESSOR = "Professor"
+    STUDENT = "Estudiante"
+    PROFESSOR = "Profesor"
 
 class User:
     def __init__(self, name: str, email: str, number: str, role: Role):
