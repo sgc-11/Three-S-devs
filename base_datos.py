@@ -29,10 +29,5 @@ def get_all_professors() -> list[User]:
     return [user for user in _users if user.role == Role.PROFESSOR]
 
 
-def search_user_by_email(email: str) -> User:
-    # for user in _users:
-    #     if user.email == email:
-    #         return user
-        
-    # return None
-    pass
+def search_user_by_email(email: str) -> list[User]:
+    return [user for user in _users if checker.is_partial_email(email, user.email)]
