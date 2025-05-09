@@ -21,10 +21,9 @@ def classify_email(email: str) -> int:
 # \.utv\.edu\.co
 # """, re.VERBOSE)
     
-    # reg_ex = re.compile("\S+@([a-z]+)\.utv\.edu\.co")
     reg_ex = re.compile(r"""
         ^  # This means that the regex must match the start of the string, that is, there is nothing before
-        [a-zA-Z0-9!#$%&'*+/=?^_`{|}~]+  # capture the start of the email
+        [a-z0-9!#$%&'*+/=?^_`{|}~]+  # capture the start of the email
         @  # capture the @
         (estudiante)?  # 'estudiante' may or not be there, if it is there save it into group
         \.?utv\.edu\.co  # check the rest of the email ending (the '\.' is to capture the '.', else it 
@@ -114,7 +113,8 @@ def check_valid_option(user_input: str, starting_range: int, ending_range: int) 
 
 
 """
-Checks if an input email is a substring of the actual email, but just by the local part (before the @)
+Checks if an input email is a substring of the actual email, but it does it by checking the input local part (before the @) 
+    as a substring, and the domain part (after the @) as equals
 
 Args:
     input_email(str): the presumed substring we want to check
@@ -124,8 +124,25 @@ Returns:
     True if the input is a substring, else false.
 """
 def is_partial_email(input_email: str, actual_email: str) -> bool:
-    pass
+    reg_exp = re.compile(r"""
+        ^
+        (?P<local_part>[a-z0-9!#$%&'*+/=?^_`{|}~]+)
+        @
+        (?P<domain_part>[a-z0-9-\.]+)
+        """, re.VERBOSE | re.IGNORECASE)
+    
+    input_match = reg_exp.match(input_email)
 
+    if not input_match:
+        raise ValueError("The input email is not valid")
+
+    actual_match = reg_exp.match(actual_email)
+
+    if not actual_match:
+        raise ValueError("The actual email is not valid")
+    
+    return (input_match.group("local_part") in actual_match.group("local_part") and 
+        input_match.group("domain_part") == actual_match.group("domain_part"))
 
 
 # Testing purposes
@@ -140,3 +157,4 @@ def is_partial_email(input_email: str, actual_email: str) -> bool:
 #     print(classify_email("yeps@eia.edu.co"))
     # print(check_name("kadaksdkad"))
     # print(check_number("57 312 270 5388"))
+    # print(is_partial_email("a@gmail.com", "b@gmail.com"))
