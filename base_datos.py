@@ -18,7 +18,7 @@ def register_user(name: str, email: str, number: str):
 
 
 def get_all_emails() -> list[str]:
-    return [user.email for user in _users]
+    return [(user.email, user.role) for user in _users]
 
 
 def get_all_students() -> list[User]:
