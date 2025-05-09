@@ -22,8 +22,8 @@ def register_user(name: str, email: str, number: str):
     _users.append(user)
 
 
-def get_all_emails() -> list[str]:
-    return [(user.email, user.role) for user in _users]
+def get_all_users() -> list[str]:
+    return _users.copy()
 
 
 def get_all_students() -> list[User]:
