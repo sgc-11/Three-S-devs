@@ -1,34 +1,36 @@
+import time
 import pyfiglet
 from rich import print
 from rich.table import Table
 import typer
 import cowsay
+import base_datos
 import checker
 from cleanTerminal import limpiar_terminal
 
 ## Principal
 def menu_principal():
-
-    print("=" * 100)
-    print(pyfiglet.figlet_format("MENU PRINCIPAL"))
-    print("=" * 100)
-
-    table = Table("Comando", "Descripción")
-    table.add_row("1", "Registrar nuevo usuario")
-    table.add_row("2", "Ver TODOS los correos registrados")
-    table.add_row("3", "Buscar un usuario por su correo")
-    table.add_row("4", "Salir de la aplicación")
-
-    print(table)
-    print("=" * 100)
-
     try:
         while True:
+            limpiar_terminal()
+            print("=" * 100)
+            print(pyfiglet.figlet_format("MENU PRINCIPAL"))
+            print("=" * 100)
+
+            table = Table("Comando", "Descripción")
+            table.add_row("1", "Registrar nuevo usuario")
+            table.add_row("2", "Ver TODOS los correos registrados")
+            table.add_row("3", "Buscar un usuario por su correo")
+            table.add_row("4", "Salir de la aplicación")
+
+            print(table)
+            print("=" * 100)
+
             prompt = typer.prompt("Seleccione una opción [1-4]")
             prompt = checker.check_valid_option(prompt, 1, 4)
-            if not prompt:
+            while not prompt:
                 print("La opcion seleccionada no es valida, vuelve a intentar")
-                continue
+                prompt = typer.prompt("Seleccione una opción [1-4]")
 
             match prompt:
                 case 4:
@@ -46,17 +48,62 @@ def menu_principal():
                     add_user_menu()
        
     except typer.Exit as e:
-        print(f"[bold green]Successfull exit[/bold green]")
+        print(f"[bold green]Salida exitosa[/bold green]")
 
 
 def add_user_menu():
     limpiar_terminal()
-    
-    name = typer.prompt("Ingrese el nombre: ")
-    if not checker.is_valid_name(name):
 
-    email = typer.prompt("Ingrese el correo: ")
-    number = typer.prompt("Ingrese el numero de celular: ")
+    print("=" * 100)
+    print(pyfiglet.figlet_format("Registro de Usuario"))
+    print("=" * 100)
+
+    print("Recuerde que cada usuario debe contar con los siguientes atributos")
+    user_table = Table("Atributos")
+    user_table.add_row("nombre")
+    user_table.add_row("correo electronico")
+    user_table.add_row("numero de celular")
+    print(user_table)
+
+    print ("[bold red]Si en algun momento quieres devolverte al menu principal, escribe 4[/bold red]")
+    print("-" * 100)
+    
+    name = typer.prompt("Ingrese el nombre")
+    while not checker.is_valid_name(name):
+        if name == "4":  return
+
+        print("El nombre ingresado no es valido")
+        name = typer.prompt("Ingrese el nombre")
+
+    email = typer.prompt("Ingrese el correo")
+    while not checker.classify_email(email):
+        if email == "4":  return
+
+        print("El email ingresado no es valido")
+        email = typer.prompt("Ingrese el correo")
+
+    number = typer.prompt("Ingrese el numero de celular")
+    while not checker.is_valid_number(number):
+        if number == "4":  return
+
+        print("El numero ingresado no es valido")
+        number = typer.prompt("Ingrese el numero de celular")
+
+    print("Asi quedo el nuevo usuario")
+    user_table = Table("Atributos", "Valos")
+    user_table.add_row("nombre", name)
+    user_table.add_row("correo electronico", email)
+    user_table.add_row("numero de celular", number)
+    print(user_table)
+
+    if not typer.confirm("Esta seguro que lo quiere ingresar?"):
+        add_user_menu()
+        return
+    
+    base_datos.register_user(name, email, number)
+    print("[bold green]Registro exitoso[/bold green]")
+
+    time.sleep(2)
 
 
 def list_all_users():
