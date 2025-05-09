@@ -57,7 +57,7 @@ Returns:
     False: unvalid name
 """
 def is_valid_name(name: str):
-    reg_exp = re.compile(r"^[a-z]+$", re.IGNORECASE)
+    reg_exp = re.compile(r"^[a-z ]+$", re.IGNORECASE)
 
     result = reg_exp.match(name)
 
