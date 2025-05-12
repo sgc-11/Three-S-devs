@@ -1,4 +1,4 @@
-#The three-S-devs 
+# The three-S-devs 
 
 A Python console application for managing user registrations, email validation, and user search operations. It features an interactive menu system with input validation and a mock database.
 
